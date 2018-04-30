@@ -80,3 +80,59 @@
 1523824049 d:\pan\homework\软件开发\gui\stack.h
 	"list.h"
 
+1523813717 source:d:\pan\homework\软件开发\softengineer\deal.cc
+	"deal.h"
+
+1523813723 d:\pan\homework\软件开发\softengineer\deal.h
+	<string>
+
+1523838567 source:d:\pan\homework\软件开发\softengineer\hashtable.cc
+	"hashtable.h"
+
+1523800731 d:\pan\homework\软件开发\softengineer\hashtable.h
+	<string>
+	"user.h"
+
+1523835809 d:\pan\homework\软件开发\softengineer\user.h
+	<iostream>
+	<string>
+	"item.h"
+	"list.h"
+	"deal.h"
+
+1523797185 d:\pan\homework\软件开发\softengineer\item.h
+	<string>
+
+1523801347 d:\pan\homework\软件开发\softengineer\list.h
+	<iostream>
+
+1523797185 source:d:\pan\homework\软件开发\softengineer\item.cc
+	"item.h"
+
+1523838205 source:d:\pan\homework\软件开发\softengineer\item_list.cc
+	"list.h"
+	"item_list.h"
+
+1523801275 d:\pan\homework\软件开发\softengineer\item_list.h
+	"list.h"
+	"item.h"
+
+1523835811 source:d:\pan\homework\软件开发\softengineer\user.cc
+	"user.h"
+
+1525074879 source:d:\pan\homework\软件开发\softengineer\main.cpp
+	<tchar.h>
+	<windows.h>
+	<string>
+	<iostream>
+	"list.h"
+	"item.h"
+	"item_list.h"
+	"user.h"
+	"hashtable.h"
+	"deal.h"
+	"stack.h"
+
+1523824049 d:\pan\homework\软件开发\softengineer\stack.h
+	"list.h"
+

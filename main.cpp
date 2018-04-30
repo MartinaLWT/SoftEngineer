@@ -338,6 +338,7 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                     {
                         ShowWindow(hwndForPSix[i],SW_SHOW);
                     }
+                    break;
                 }
             case 7:
                 {
@@ -506,7 +507,7 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
             }
             case 7://按下查看我的商品
             {
-                /*totalMyItem = 0;
+                totalMyItem = 0;
                 ListNode<Item> *nowmyitem = preUser.sale_items().front();
                 while(nowmyitem!=nullptr&&totalMyItem<5)
                 {
@@ -519,12 +520,12 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                 //MessageBox(hwnd,TEXT("Hello"),TEXT("Bye"),MB_OK);
                 page = 6;
                 pageStack.push(page);
-                MessageBox(hwnd,TEXT("Hello"),TEXT("Bye"),MB_OK);*/
+                //MessageBox(hwnd,TEXT("Hello"),TEXT("Bye"),MB_OK);*/
                 for(i=0;i<5;i++)
                 {
                     ShowWindow(hwndForPTwo[i],SW_HIDE);
                 }
-                MessageBox(hwnd,TEXT("Hello"),TEXT("Bye"),MB_OK);
+                //MessageBox(hwnd,TEXT("Hello"),TEXT("Bye"),MB_OK);
                 InvalidateRect(hwnd,&rect,true);
                 //MessageBox(hwnd,TEXT("Hello"),TEXT("Bye"),MB_OK);
                 break;
