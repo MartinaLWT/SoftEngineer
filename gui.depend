@@ -1,0 +1,82 @@
+# depslib dependency file v1.0
+1523838433 source:d:\pan\homework\软件开发\gui\main.cpp
+	<tchar.h>
+	<windows.h>
+	<string>
+	<iostream>
+	"list.h"
+	"item.h"
+	"item_list.h"
+	"user.h"
+	"hashtable.h"
+	"deal.h"
+	"stack.h"
+
+1523797185 source:d:\pan\homework\软件开发\gui\item.cc
+	"item.h"
+
+1523797185 d:\pan\homework\软件开发\gui\item.h
+	<string>
+
+1523838205 source:d:\pan\homework\软件开发\gui\item_list.cc
+	"list.h"
+	"item_list.h"
+
+1523801347 d:\pan\homework\软件开发\gui\list.h
+	<iostream>
+
+1523801275 d:\pan\homework\软件开发\gui\item_list.h
+	"list.h"
+	"item.h"
+
+1523692976 source:d:\pan\homework\软件开发\gui\item_list_test.cc
+	"item_list.h"
+	"item.h"
+
+1523692976 source:d:\pan\homework\软件开发\gui\item_test.cc
+	<string>
+	<iostream>
+	"item.h"
+
+1523755002 source:d:\pan\homework\软件开发\gui\treap.cc
+
+1523835811 source:d:\pan\homework\软件开发\gui\user.cc
+	"user.h"
+
+1523835809 d:\pan\homework\软件开发\gui\user.h
+	<iostream>
+	<string>
+	"item.h"
+	"list.h"
+	"deal.h"
+
+1523813723 d:\pan\homework\软件开发\gui\deal.h
+	<string>
+
+1523718181 source:d:\pan\homework\软件开发\gui\user_list.cc
+	"list.h"
+	"user_list.h"
+
+1523718755 d:\pan\homework\软件开发\gui\user_list.h
+	"list.h"
+	"user.h"
+
+1523838567 source:d:\pan\homework\软件开发\gui\hashtable.cc
+	"hashtable.h"
+
+1523800731 d:\pan\homework\软件开发\gui\hashtable.h
+	<string>
+	"user.h"
+
+1523757572 d:\pan\homework\软件开发\gui\treap.h
+	<iostream>
+
+1523813717 source:d:\pan\homework\软件开发\gui\deal.cc
+	"deal.h"
+
+1523798473 d:\pan\homework\软件开发\gui\deal.cc
+	"deal.h"
+
+1523824049 d:\pan\homework\软件开发\gui\stack.h
+	"list.h"
+
