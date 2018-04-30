@@ -37,6 +37,7 @@ Item itemtest1 = Item(100,L"雀巢酸奶",L"正版雀巢酸奶，保质期至211
 Item itemtest2 = Item(100,L"IPHONE666",L"2117年最新款正版IPHONE",true,L"system");
 Item itemtest3 = Item(100,L"百事辣椒酱",L"百事辣椒酱，正版！永久质保，未开封",true,L"system");
 
+ListNode<Item> *myItemCheck;
 ListNode<Item> *pointer;
 ItemList itemList;
 List<Item> beFound;
@@ -60,8 +61,9 @@ static HWND hwndForPTwo[5];//主页2
 static HWND hwndForPThree[7];//搜索商品页3
 static HWND hwndForPFour[2];//商品详情页4
 static HWND hwndForPFive[7];//个人交易信息页5
-static HWND hwndForPSix[7];//个人商品信息页6
+static HWND hwndForPSix[8];//个人商品信息页6
 static HWND hwndForSeven[1];//交易详情页7
+static HWND hwndForPEight[4];
 
 
 LRESULT CALLBACK WindowProcedure (HWND, UINT, WPARAM, LPARAM);
@@ -194,7 +196,7 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                          200,300,
                          350,40,
                          hwnd,(HMENU)7,((LPCREATESTRUCT)lParam)->hInstance,NULL);
-            hwndForPSix[6] = hwndForPThree[6] = hwndForPFive[5] =
+            hwndForPEight[3] = hwndForPSix[6] = hwndForPThree[6] = hwndForPFive[5] =
             hwndForPFour[1] = hwndForSeven[0] = CreateWindow(TEXT("Button"),TEXT("<="),//后退按键
                          BS_PUSHBUTTON|WS_CHILD,
                          50,500,
@@ -249,11 +251,32 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                             550,40,
                             hwnd,(HMENU)(21+i),((LPCREATESTRUCT)lParam)->hInstance,NULL);
             }
-            hwndForPSix[5] = CreateWindow(TEXT("Button"),TEXT("查看"),//查看单个交易按键
+            hwndForPSix[5] = CreateWindow(TEXT("Button"),TEXT("查看"),//查看单个商品按键
                          BS_PUSHBUTTON|WS_CHILD,
                          600,500,
                          70,40,
                          hwnd,(HMENU)27,((LPCREATESTRUCT)lParam)->hInstance,NULL);
+            hwndForPSix[7] = CreateWindow(TEXT("Button"),TEXT("上传商品"),
+                         BS_PUSHBUTTON|WS_CHILD,
+                         300,500,
+                         90,40,
+                         hwnd,(HMENU)28,((LPCREATESTRUCT)lParam)->hInstance,NULL);
+            //以下为上传商品页
+            hwndForPEight[0] = CreateWindow(TEXT("Edit"),TEXT("请在此处输入商品名"),//主页搜索栏
+                         WS_CHILD,
+                         150,100,
+                         500,20,
+                         hwnd,(HMENU)29,((LPCREATESTRUCT)lParam)->hInstance,NULL);
+            hwndForPEight[1] = CreateWindow(TEXT("Edit"),TEXT("请在此处输入商品详情"),//主页搜索栏
+                         WS_CHILD,
+                         150,250,
+                         500,200,
+                         hwnd,(HMENU)30,((LPCREATESTRUCT)lParam)->hInstance,NULL);
+            hwndForPEight[2] = CreateWindow(TEXT("Button"),TEXT("上传！"),//查看单个商品按键
+                         BS_PUSHBUTTON|WS_CHILD,
+                         600,500,
+                         70,40,
+                         hwnd,(HMENU)31,((LPCREATESTRUCT)lParam)->hInstance,NULL);
             return 0;
         }
 
@@ -334,7 +357,7 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                 }
             case 6://我的商品页
                 {
-                    for(i=0;i<7;i++)
+                    for(i=0;i<8;i++)
                     {
                         ShowWindow(hwndForPSix[i],SW_SHOW);
                     }
@@ -351,6 +374,17 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                     TextOut(hdc,100,300,linked_sentence.c_str(),linked_sentence.length());
                     break;
                 }
+            case 8:
+                {
+                    for(i=0;i<4;i++)
+                    {
+                        ShowWindow(hwndForSeven[i],SW_SHOW);
+                    }
+                    TextOut(hdc,100,100,TEXT("商品名："),4);
+                    TextOut(hdc,100,250,TEXT("详情："),3);
+                    break;
+                }
+
             }
             EndPaint(hwnd,&ps);
             return 0;
@@ -365,6 +399,10 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
         if(clicked>14&&clicked<20)
         {
             dealchosen = clicked-15;
+        }
+        if(clicked>20&&clicked<26)
+        {
+            myitemchosen = clicked-21;
         }
         GetClientRect(hwnd,&rect);
         switch(clicked)
@@ -553,6 +591,30 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                 }
                 break;
             }
+            case 27://按下查看我的商品详情按键
+            {
+                if(myitemchosen<totalMyItem)
+                {
+                    myItemCheck = preUser.sale_items().front();
+                    for(i=0;i<myitemchosen;i++)
+                    {
+                        myItemCheck = myItemCheck->get_next();
+                    }
+                    itemCheck = myItemCheck->get_pointer();
+                    for(i=0;i<7;i++)
+                    {
+                        ShowWindow(hwndForPSix[i],SW_HIDE);
+                    }
+                    page = 4;
+                    pageStack.push(page);
+                    InvalidateRect(hwnd,&rect,TRUE);
+                }
+                else
+                {
+                    UpdateWindow(hwnd);
+                }
+                break;
+            }
             case 26:
             {
                 /*wstring ks= L"k";
@@ -586,7 +648,7 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                 }
                 else if(toHide==6)
                 {
-                    for(i=0;i<7;i++)
+                    for(i=0;i<8;i++)
                         ShowWindow(hwndForPSix[i],SW_HIDE);
                         InvalidateRect(hwnd,&rect,true);
                     break;
@@ -598,7 +660,37 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                         InvalidateRect(hwnd,&rect,true);
                     break;
                 }
+                else if(toHide==8)
+                {
+                    for(i=0;i<4;i++)
+                        ShowWindow(hwndForPEight[i],SW_HIDE);
+                    InvalidateRect(hwnd,&rect,true);
+                    break;
+                }
                 InvalidateRect(hwnd,&rect,true);
+                break;
+            }
+            case 28:
+            {
+                page = 8;
+                pageStack.push(page);
+                for(i=0;i<8;i++)
+                {
+                    ShowWindow(hwndForPSix[i],SW_HIDE);
+                }
+                InvalidateRect(hwnd,&rect,true);
+                break;
+            }
+            case 31:
+            {
+                GetWindowText(hwndForPEight[0],lpString,128);
+                wstring newItemTitle = lpString;
+                GetWindowText(hwndForPEight[1],lpString,128);
+                wstring newItemDetail = lpString;
+                Item newItem = Item(0,newItemTitle,newItemDetail,true,preUser.GetName());
+                itemList.add_item(newItem);
+                preUser.sale_items().add_front(newItem);
+                MessageBox(hwnd,TEXT("上传成功！"),TEXT("已上传"),MB_OK);
                 break;
             }
         }
