@@ -5,7 +5,7 @@ using std::cout;
 using std::endl;
 
 template<typename T>
-class ListNode
+class ListNode//链表结点
 {
 	private:
 		T content;
@@ -21,19 +21,19 @@ class ListNode
 		}
 		ListNode(T content, ListNode *next):content(content),next(next)
 		{}
-		T* get_pointer()
+		T* get_pointer()//返回结点指针
 		{
 		    return &content;
 		}
-		T get_content()
+		T get_content()//返回结点内容
 		{
 			return content;
 		}
-		void set_next(ListNode *next)
+		void set_next(ListNode *next)//设置结点指向下一结点
 		{
 			this->next=next;
 		}
-		ListNode* get_next()
+		ListNode* get_next()//返回结点指向的下一结点的指针
 		{
 			return next;
 		}
@@ -49,7 +49,7 @@ class List
 		{
 			head=nullptr;
 		}
-		void add_front(T var)
+		void add_front(T var)//增加新结点在链表的头
 		{
 			head=new ListNode<T>(var,head);
 		}
@@ -57,7 +57,7 @@ class List
 		{
 			return head==nullptr;
 		}
-		void del_front()
+		void del_front()//删除第一个结点
 		{
 			if(empty())
 				return;
@@ -77,7 +77,7 @@ class List
 			}
 			cout<<endl<<endl;
 		}
-    ListNode<T> *front()
+    ListNode<T> *front()//返回头结点
     {
       return head;
     }
